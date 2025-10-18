@@ -5,9 +5,11 @@ import com.galactic_competition.Repository.SpeciesRepository;
 import com.galactic_competition.entities.Combat;
 import com.galactic_competition.entities.Ranking;
 import com.galactic_competition.entities.Species;
+import com.galactic_competition.models.FightResult;
 import com.galactic_competition.models.response.RankingListResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,40 +25,44 @@ public class CombatService {
         this.combatRepository = combatRepository;
     }
 
-    public String fight(String fighter1Name, String fighter2Name) {
-        Species winnerSpecie;
-        String resultMessage;
+    public FightResult fight(String fighter1Name, String fighter2Name) {
+        FightResult winnerSpecie = new FightResult();
 
         Species specie1 = this.speciesRepository.getSpecieByName(fighter1Name);
         Species specie2 = this.speciesRepository.getSpecieByName(fighter2Name);
-
         if (specie1 == null) {
-            return fighter1Name + " no está registrado en las especies";
+            winnerSpecie.setMessage( fighter1Name + " no está registrado en las especies");
+            winnerSpecie.setHasError(Boolean.TRUE);
+            return winnerSpecie;
         }
         if (specie2 == null) {
-            return fighter2Name + " no está registrado en las especies";
+            winnerSpecie.setMessage( fighter2Name + " no está registrado en las especies");
+            winnerSpecie.setHasError(Boolean.TRUE);
+            return winnerSpecie;
+
         }
         if (fighter1Name.equalsIgnoreCase(fighter2Name)) {
-                return "No debe ser la misma especie";
+            winnerSpecie.setMessage("No debe ser la misma especie");
+            winnerSpecie.setHasError(Boolean.TRUE);
+            return winnerSpecie;
         }
 
         if (specie1.getPowerLevel() > specie2.getPowerLevel()) {
-            winnerSpecie = specie1;
-            resultMessage = specie1.getName() + " gana con un powerLevel de " + specie1.getPowerLevel();
+            winnerSpecie.setWinner(specie1);
+            winnerSpecie.setMessage(specie1.getName() + " gana con un powerLevel de " + specie1.getPowerLevel());
         } else if (specie2.getPowerLevel() > specie1.getPowerLevel()) {
-            winnerSpecie = specie2;
-            resultMessage = specie2.getName() + " gana con un powerLevel de " + specie2.getPowerLevel();
+            winnerSpecie.setWinner(specie2);
+            winnerSpecie.setMessage(specie2.getName() + " gana con un powerLevel de " + specie2.getPowerLevel());
         } else {
             if (specie1.getName().compareToIgnoreCase(specie2.getName()) < 0) {
-                winnerSpecie = specie1;
+                winnerSpecie.setWinner(specie1);
             } else {
-                winnerSpecie = specie2;
+                winnerSpecie.setWinner(specie2);
             }
-            resultMessage = winnerSpecie.getName() + " gana por orden alfabético";
+            winnerSpecie.setMessage(winnerSpecie.getWinner().getName() + " gana por orden alfabético");
         }
-
-        this.combatRepository.add(specie1, specie2, winnerSpecie.getName());
-        return resultMessage;
+        this.combatRepository.add(specie1, specie2, winnerSpecie.getWinner().getName());
+        return winnerSpecie;
 
     }
 
@@ -86,5 +92,18 @@ public class CombatService {
         }
         response.setRanking(rankingList);
         return response;
+    }
+
+    public Combat randomFight() {
+        List<Species> speciesList = this.speciesRepository.list();
+        if (speciesList.size() < 2) {
+            throw new IllegalStateException("Se requieren al menos dos especies para combatir.");
+        }
+        Collections.shuffle(speciesList);
+        Species species1 = speciesList.get(0);
+        Species species2 = speciesList.get(1);
+
+        FightResult winner = fight(species1.getName(), species2.getName());
+        return new Combat(species1,species2,winner.getMessage());
     }
 }

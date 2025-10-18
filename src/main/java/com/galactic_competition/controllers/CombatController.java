@@ -31,7 +31,7 @@ public class CombatController {
     @PostMapping(value = CombatConstants.FIGHT_URI)
     @ResponseBody
     public String fight(@Valid @RequestBody CombatFightRequest combatFightRequest){
-        return  combatService.fight(combatFightRequest.getFighter1(),combatFightRequest.getFighter2());
+        return combatService.fight(combatFightRequest.getFighter1(),combatFightRequest.getFighter2()).getMessage();
     }
 
     @Operation()
@@ -41,4 +41,10 @@ public class CombatController {
         return combatService.ranking();
     }
 
+    @Operation()
+    @GetMapping(value = CombatConstants.GET_RANDOM_FIGHT_URI)
+    @ResponseBody
+    public String randomFight(){
+        return combatService.randomFight().getWinner();
+    }
 }

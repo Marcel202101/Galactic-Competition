@@ -23,6 +23,7 @@ public class CombatConstants {
 
     public static final String GET_FIGHT_LIST_URI = "/getFightList";
     public static final String GET_RANKING_URI = "/ranking";
+    public static final String GET_RANDOM_FIGHT_URI = "/randomFight";
 
     public static final String FIGHT_URI = "/fight";
 

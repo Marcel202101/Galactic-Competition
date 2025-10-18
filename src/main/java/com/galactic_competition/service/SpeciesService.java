@@ -23,6 +23,6 @@ public class SpeciesService {
             this.speciesRepository.add((specie));
             return "Registro Satisfactorio";
         }
-        return "Registro Fallido";
+        throw new IllegalStateException("Registro Fallido.");
     }
 }

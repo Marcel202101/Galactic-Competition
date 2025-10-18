@@ -65,7 +65,7 @@ Una vez iniciada la aplicación, accede a la documentación interactiva en:
 
 ### ➕ **Agregar especie**
 
-**POST** `/AddSpecies`
+**POST** `/addSpecies`
 
 #### Ejemplo de request:
 
@@ -177,7 +177,7 @@ src/main/java/com/galactic_competition/galactic_competition
 
 ## ✨ Autor
 
-**Miguel González**
+**Marcel González**
 📧 Contacto: [marcel202101@gmail.com](mailto:marcel202101@gmail.com)
 
 

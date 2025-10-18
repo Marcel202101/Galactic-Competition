@@ -22,5 +22,12 @@ public class Combat {
     @JsonProperty("winner")
     private String winner;
 
-
+    @Override
+    public String toString() {
+        return "Combat{" +
+                "fighter1=" + fighter1 +
+                ", fighter2=" + fighter2 +
+                ", winner='" + winner + '\'' +
+                '}';
+    }
 }

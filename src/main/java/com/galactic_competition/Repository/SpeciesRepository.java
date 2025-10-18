@@ -19,10 +19,10 @@ public class SpeciesRepository {
     }
 
     public boolean findByName(String name){ return this.list.stream().anyMatch(
-            species -> species.getName().equals(name));}
+            species -> species.getName().equalsIgnoreCase(name));}
 
     public Species getSpecieByName(String name){    return this.list.stream()
-            .filter(specie -> specie.getName().equals(name))
+            .filter(specie -> specie.getName().equalsIgnoreCase(name))
             .findFirst()
             .orElse(null);
     }

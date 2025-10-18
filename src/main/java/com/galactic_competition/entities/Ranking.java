@@ -22,4 +22,12 @@ public class Ranking {
     @JsonProperty("wins")
     private Long wins;
 
+    @Override
+    public String toString() {
+        return "Ranking{" +
+                "position=" + position +
+                ", name='" + name + '\'' +
+                ", wins=" + wins +
+                '}';
+    }
 }

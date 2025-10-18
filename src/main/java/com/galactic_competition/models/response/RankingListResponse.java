@@ -1,4 +1,4 @@
-package com.galactic_competition.models;
+package com.galactic_competition.models.response;
 
 import com.galactic_competition.entities.Ranking;
 import io.swagger.v3.oas.annotations.media.Schema;

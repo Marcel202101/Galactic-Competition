@@ -29,7 +29,7 @@ Permite registrar especies, hacer que luchen entre sí y consultar un ranking de
 ### 1️⃣ Clonar el repositorio
 
 ```bash
-git clone https://github.com/tuusuario/galactic_competition.git
+git clone https://github.com/Marcel202101/Galactic-Competition
 cd galactic_competition
 ```
 

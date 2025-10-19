@@ -1,74 +1,78 @@
 # 🪐 Galactic Competition
 
-**Galactic Competition** es una API REST desarrollada con **Spring Boot** que simula una competencia interestelar entre especies.
+**Galactic Competition** es una API REST desarrollada con **Spring Boot** que simula una competencia interestelar entre especies.  
 Permite registrar especies, hacer que luchen entre sí y consultar un ranking de las más poderosas.
 
 ---
 
 ## 🚀 Características principales
-
-* **Agregar especies** con nombre, habilidad especial y nivel de poder.
-* **Realizar combates** entre dos especies y determinar al ganador.
-* **Consultar el ranking** de las especies según sus victorias.
-* **Documentación automática** con **Swagger / OpenAPI**.
+- Agregar especies con nombre, habilidad especial y nivel de poder.  
+- Realizar combates entre dos especies y determinar al ganador.  
+- Consultar el ranking de las especies según sus victorias.  
+- Documentación automática con **Swagger / OpenAPI**.  
 
 ---
 
 ## 🧩 Tecnologías utilizadas
-
-* **Java 21**
-* **Spring Boot 3.5.6**
-* **Lombok**
-* **Springdoc OpenAPI 2.7.0**
-* **Maven**
+- Java 21  
+- Spring Boot 3.5.6  
+- Lombok  
+- Springdoc OpenAPI 2.7.0  
+- Maven  
 
 ---
 
 ## 📦 Instalación y ejecución
 
 ### 1️⃣ Clonar el repositorio
-
 ```bash
-git clone https://github.com/tuusuario/galactic_competition.git
+git clone https://github.com/Marcel202101/Galactic-Competition
 cd galactic_competition
 ```
 
 ### 2️⃣ Compilar el proyecto
-
 ```bash
 mvn clean install
 ```
 
 ### 3️⃣ Ejecutar la aplicación
-
 ```bash
 mvn spring-boot:run
 ```
+---
 
-Por defecto, la aplicación estará disponible en:
+## 🐳 Ejecución con Docker
 
+También puedes ejecutar **Galactic Competition** usando Docker.
+
+### 🔧 Construir la imagen
+```bash
+docker build -t spring-boot-docker .
 ```
-http://localhost:8080
+
+### ▶️ Ejecutar el contenedor
+```bash
+docker run -d -p 8080:8080 spring-boot-docker
 ```
+
+La aplicación quedará disponible en:  
+👉 [http://localhost:8080](http://localhost:8080)
 
 ---
 
 ## 🔍 Documentación Swagger
 
-Una vez iniciada la aplicación, accede a la documentación interactiva en:
-
+Una vez iniciada la aplicación, accede a la documentación interactiva en:  
 👉 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 ---
 
 ## 🧠 Endpoints principales
 
-### ➕ **Agregar especie**
+### ➕ Agregar especie
+**POST /addSpecies**
 
-**POST** `/addSpecies`
-
-#### Ejemplo de request:
-
+**Ejemplo de request:**
 ```json
 {
   "name": "Monkey",
@@ -77,8 +81,7 @@ Una vez iniciada la aplicación, accede a la documentación interactiva en:
 }
 ```
 
-#### Ejemplo de respuesta:
-
+**Ejemplo de respuesta:**
 ```json
 {
   "species": [
@@ -93,12 +96,10 @@ Una vez iniciada la aplicación, accede a la documentación interactiva en:
 
 ---
 
-### ⚔️ **Realizar combate**
+### ⚔️ Realizar combate
+**POST /fight**
 
-**POST** `/fight`
-
-#### Ejemplo de request:
-
+**Ejemplo de request:**
 ```json
 {
   "fighter1": "Monkey",
@@ -106,8 +107,7 @@ Una vez iniciada la aplicación, accede a la documentación interactiva en:
 }
 ```
 
-#### Ejemplo de respuesta:
-
+**Ejemplo de respuesta:**
 ```json
 {
   "fighter1": {
@@ -126,12 +126,10 @@ Una vez iniciada la aplicación, accede a la documentación interactiva en:
 
 ---
 
-### 🏆 **Consultar ranking**
+### 🏆 Consultar ranking
+**GET /ranking**
 
-**GET** `/ranking`
-
-#### Ejemplo de respuesta:
-
+**Ejemplo de respuesta:**
 ```json
 [
   {
@@ -150,7 +148,6 @@ Una vez iniciada la aplicación, accede a la documentación interactiva en:
 ---
 
 ## ⚙️ Estructura del proyecto
-
 ```
 src/main/java/com/galactic_competition/galactic_competition
 ├── constants/          # Textos y descripciones HTML para Swagger
@@ -165,19 +162,14 @@ src/main/java/com/galactic_competition/galactic_competition
 ---
 
 ## 🧰 Requisitos previos
+- **JDK 21**  
+- **Maven 3.9+**  
+- IDE compatible con **Lombok** (IntelliJ, Eclipse, VS Code)  
 
-* JDK **21**
-* Maven **3.9+**
-* IDE compatible con Lombok (IntelliJ, Eclipse, VS Code)
-
-  ⚠️ Asegúrate de tener **Lombok habilitado** en tu IDE
-  (plugin instalado y “Annotation Processing” activado)
+⚠️ Asegúrate de tener Lombok habilitado en tu IDE (plugin instalado y *Annotation Processing* activado).
 
 ---
 
 ## ✨ Autor
-
-**Marcel González**
+**Marcel González**  
 📧 Contacto: [marcel202101@gmail.com](mailto:marcel202101@gmail.com)
-
-

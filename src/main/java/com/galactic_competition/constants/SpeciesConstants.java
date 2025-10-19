@@ -18,7 +18,7 @@ public class SpeciesConstants {
     public static final String HTML_PARAMETERS_INFO="Recibe un JSON con los siguientes parámetros:";
     public static final String GET_SPECIES_URI= "/getSpeciesList";
 
-    public static final String ADD_SPECIES_URI= "/AddSpecies";
+    public static final String ADD_SPECIES_URI= "/addSpecies";
 
     public static final String ADD_SPECIES = "<div class='alert alert-info'><h3><u><span class='label label-default'> Servicio que obtiene las especies</span></u></h3>"
             + HTML_PARAMETERS_INFO
